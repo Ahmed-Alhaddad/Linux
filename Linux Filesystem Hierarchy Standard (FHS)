@@ -1,0 +1,54 @@
+Linux Filesystem Hierarchy Standard (FHS)
+
+Instead of drive letters like C:\
+, D:\
+ in Windows, Linux uses a single tree structure starting from the /
+ (root) directory. This structure is standardized by the Filesystem Hierarchy Standard (FHS).
+Directory	Description	Content Example
+/
+(Root)	The starting point of the file system.	Entire system.
+/bin
+	Contains basic user commands. (Binary)	ls
+, cp
+, cat
+, bash
+/boot
+	Contains files needed for the system to boot.	vmlinuz
+(Kernel), initrd
+, GRUB
+/dev
+	Contains hardware device files. (Devices)	/dev/sda
+(Disk), /dev/tty
+(Terminal)
+/etc
+	The center where system configuration files are located.	/etc/passwd
+, /etc/ssh/sshd_config
+/home
+	The place where users' personal files are stored.	/home/john
+, /home/ali
+/lib
+	Library files needed by programs.	libc.so
+, Kernel modules
+/mnt
+& /media
+	Temporarily mounted disks and USB drives.	/media/usb-disk
+/opt
+	Manually installed 3rd party applications.	Google Chrome, TeamViewer etc.
+/proc
+	Virtual file system. Holds system info.	/proc/cpuinfo
+, /proc/meminfo
+/root
+	The home directory of the system administrator (root).	Root's private files.
+/sbin
+	Critical commands used only by the administrator.	iptables
+, fdisk
+, reboot
+/tmp
+	For temporary files.	Application caches.
+/usr
+	Secondary hierarchy. User tools are here.	/usr/bin/python
+, /usr/share
+/var
+	Files whose size constantly changes.	Logs (/var/log
+), Website (/var/www
+)
