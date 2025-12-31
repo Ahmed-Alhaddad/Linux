@@ -1,7 +1,3 @@
-Got it 👍 — you want this **cleaner, simpler, and easier to understand**, not more advanced.
-Below is the **same content**, but **organized, clarified, and beginner-friendly**, like proper notes you could put on GitHub or study from.
-
----
 
 # Useful Terminal Commands
 
