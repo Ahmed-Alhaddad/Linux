@@ -1,26 +1,26 @@
 
-````markdown
+
 # Linux Filters and Text Processing
 
 ## Filters
 
-Filters are programs that take plain text (stored in a file or produced by another program) as standard input, transform it into a meaningful format, and then return it as standard output. Linux has a multitude of filters.
+Filters are programs that take plain text (stored in a file or produced by another program) as standard input, transform it into a meaningful format, and return it as standard output. Linux has a multitude of filters.
 
 ---
 
 ## Filtering and Pipe (`|`) Logic
 
-In Linux, the output of one command can be the input of another command. The mechanism providing this is called **Pipeline** and is shown with the `|` sign.
+In Linux, the output of one command can be the input of another command. This mechanism is called a **pipeline** and is shown with the `|` sign.
 
 ### How Does It Work?
 
 Think of it like a production line in a factory:
 
-1. **Raw Material:** Text read from a file.  
-2. **Machine 1 (Command 1):** Reads and processes the text (e.g., `cat`).  
-3. **Conveyor Belt (Pipe `|`):** Carries the processed data to the next machine.  
-4. **Machine 2 (Command 2):** Filters the incoming data (e.g., `grep`).  
-5. **Product:** The filtered result appearing on the screen.  
+1. **Raw Material:** Text read from a file.
+2. **Machine 1 (Command 1):** Reads and processes the text (e.g., `cat`).
+3. **Conveyor Belt (Pipe `|`):** Carries the processed data to the next machine.
+4. **Machine 2 (Command 2):** Filters the incoming data (e.g., `grep`).
+5. **Product:** The filtered result appears on the screen.
 
 Thanks to this, simple commands can combine to perform very complex tasks.
 
@@ -28,35 +28,37 @@ Thanks to this, simple commands can combine to perform very complex tasks.
 
 ## 1. Redirection
 
-Every program in Linux has 3 doors:
+Every Linux program has 3 "doors":
 
-| Door | Description |
-|------|-------------|
-| Input (STDIN - 0) | Keyboard |
-| Output (STDOUT - 1) | Screen |
-| Error (STDERR - 2) | Error messages (Screen) |
+| Door   | Name       | Default  |
+| ------ | ---------- | -------- |
+| Input  | STDIN (0)  | Keyboard |
+| Output | STDOUT (1) | Screen   |
+| Error  | STDERR (2) | Screen   |
 
-We can redirect these doors to files:
+We can redirect these doors to files.
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `>` | Write output to file (deletes old content) | `ls > list.txt` |
-| `>>` | Append output to end of file | `echo "Last line" >> note.txt` |
-| `2>` | Saves only errors to file | `ls /nonexistent_directory 2> error.txt` |
-| `<` | Gives file as input to command | `wc -l < list.txt` |
-| `|` | Sends output of first command to second (Pipe) | `cat file | grep "search"` |
+| Operator | Description                       | Example                        |           |                |
+| -------- | --------------------------------- | ------------------------------ | --------- | -------------- |
+| `>`      | Write output to file (overwrites) | `ls > list.txt`                |           |                |
+| `>>`     | Append output to file             | `echo "Last line" >> note.txt` |           |                |
+| `2>`     | Redirect errors to file           | `ls /nonexistent 2> error.txt` |           |                |
+| `<`      | Give file as input to command     | `wc -l < list.txt`             |           |                |
+| `        | `                                 | Pipe output to another command | `cat file | grep "search"` |
 
-**Example: Searching While Hiding Errors**
+### Example: Searching While Hiding Errors
 
 ```bash
 find / -name "secret_file" 2> /dev/null
-````
+```
+
+Only the found result is visible; error messages are hidden.
 
 ---
 
 ## 2. Text Processing Tools
 
-Let's consider a file `names.txt`:
+Suppose we have `names.txt`:
 
 ```
 Ali Veli
@@ -67,133 +69,158 @@ Ali Veli
 
 ### Cat
 
-Display the contents of one or more files:
+Displays the contents of one or more text files.
 
 ```bash
 cat /etc/ssh/sshd_config
 ```
 
+---
+
 ### Head
 
-View the first `n` lines of a file (default: 10):
+Shows the first `n` lines of a file.
 
 ```bash
 head -n 3 /var/log/apache2/access.log
 ```
 
+---
+
 ### Tail
 
-View the last `n` lines of a file (default: 10):
+Shows the last `n` lines of a file.
 
 ```bash
 tail -n 3 /var/log/auth.log
 ```
 
-**Live Log Monitoring:**
+Live monitoring:
 
 ```bash
 tail -f /var/log/syslog
 ```
 
+---
+
 ### Sort
 
-Sort file contents alphabetically:
+Sorts file content alphabetically.
 
 ```bash
 sort names.txt
 ```
 
+---
+
 ### Uniq
 
-Filter consecutive duplicate lines:
+Filters consecutive duplicate lines.
 
 ```bash
 sort names.txt | uniq
 ```
 
-Show count of repetitions:
+Count occurrences:
 
 ```bash
 sort names.txt | uniq -c
 ```
 
+---
+
 ### Grep
 
-Search for specific text strings:
+Searches for specific text strings.
 
 ```bash
 grep '192.168.1.1' /var/log/apache2/access.log
 ```
 
-**Advanced grep:**
+Advanced:
 
-* `-i`: Case insensitive
-* `-v`: Show non-matching
-* `-r`: Recursive search
+* `-i` : Case insensitive
+* `-v` : Exclude matches
+* `-r` : Recursive search
+
+---
 
 ### Wc (Word Count)
 
-Get lines, words, and character counts:
+Counts lines, words, and characters.
 
 ```bash
 wc /etc/passwd
 ```
 
+---
+
 ### Cut
 
-Split lines and extract specific fields:
+Splits lines and selects columns.
 
 ```bash
 cut -d ":" -f 1 /etc/passwd | head -n 3
 ```
 
+---
+
 ### Awk
 
-Powerful column-based text processing:
+Powerful column-based text processor.
 
 ```bash
 awk '{print $1}' names.txt
 ```
 
-Advanced example (process list):
+Example: extract user and command from `ps aux`:
 
 ```bash
 ps aux | awk '{print $1, $11}' | head -n 3
 ```
 
+---
+
 ### Sed
 
-Stream editor for filtering and transforming text:
+Stream editor for text transformation.
 
 ```bash
 sed 's/Alice/George/' names.txt
 ```
 
-Permanent changes: add `-i` flag.
+Use `-i` to edit files in place.
+
+---
 
 ### Tee
 
-Print output to screen **and** write to file:
+Print output to screen **and** write to a file.
 
 ```bash
 echo "Log Entry" | tee log.txt
 ```
 
+---
+
 ### Diff
 
-Show differences between files:
+Shows differences between two files.
 
 ```bash
 diff file1.txt file2.txt
 ```
 
+---
+
 ### Tr
 
-Perform character replacements:
+Character replacement.
 
 ```bash
 echo "hello" | tr "a-z" "A-Z"
 ```
 
+---
 
 
