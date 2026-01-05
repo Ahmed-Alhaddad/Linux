@@ -224,8 +224,6 @@ echo "hello" | tr "a-z" "A-Z"
 ---
 
 
-Here’s a **clean, GitHub‑ready `file.md`** version of everything you listed, formatted consistently and written in a **neutral, educational tone** (good for labs, notes, and learning repos).
-
 ````markdown
 # Linux Commands Reference
 
