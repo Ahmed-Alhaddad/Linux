@@ -1,54 +1,34 @@
-Linux Filesystem Hierarchy Standard (FHS)
+# Linux Filesystem Hierarchy Standard (FHS)
 
-Instead of drive letters like C:\
-, D:\
- in Windows, Linux uses a single tree structure starting from the /
- (root) directory. This structure is standardized by the Filesystem Hierarchy Standard (FHS).
-Directory	Description	Content Example
-/
-(Root)	The starting point of the file system.	Entire system.
-/bin
-	Contains basic user commands. (Binary)	ls
-, cp
-, cat
-, bash
-/boot
-	Contains files needed for the system to boot.	vmlinuz
-(Kernel), initrd
-, GRUB
-/dev
-	Contains hardware device files. (Devices)	/dev/sda
-(Disk), /dev/tty
-(Terminal)
-/etc
-	The center where system configuration files are located.	/etc/passwd
-, /etc/ssh/sshd_config
-/home
-	The place where users' personal files are stored.	/home/john
-, /home/ali
-/lib
-	Library files needed by programs.	libc.so
-, Kernel modules
-/mnt
-& /media
-	Temporarily mounted disks and USB drives.	/media/usb-disk
-/opt
-	Manually installed 3rd party applications.	Google Chrome, TeamViewer etc.
-/proc
-	Virtual file system. Holds system info.	/proc/cpuinfo
-, /proc/meminfo
-/root
-	The home directory of the system administrator (root).	Root's private files.
-/sbin
-	Critical commands used only by the administrator.	iptables
-, fdisk
-, reboot
-/tmp
-	For temporary files.	Application caches.
-/usr
-	Secondary hierarchy. User tools are here.	/usr/bin/python
-, /usr/share
-/var
-	Files whose size constantly changes.	Logs (/var/log
-), Website (/var/www
-)
+Unlike Windows, which uses drive letters such as `C:\` and `D:\`, Linux uses a single directory tree that starts at the root directory `/`.  
+This layout is defined by the **Filesystem Hierarchy Standard (FHS)** to ensure consistency across Linux systems.
+
+---
+
+## Common Linux Directories
+
+| Directory | Description | Example Contents |
+|---------|-------------|------------------|
+| `/` (Root) | The starting point of the filesystem hierarchy. | Entire system |
+| `/bin` | Essential user command binaries. | `ls`, `cp`, `cat`, `bash` |
+| `/boot` | Files required to boot the system. | `vmlinuz` (kernel), `initrd`, GRUB |
+| `/dev` | Device files representing hardware. | `/dev/sda` (disk), `/dev/tty` |
+| `/etc` | System-wide configuration files. | `/etc/passwd`, `/etc/ssh/sshd_config` |
+| `/home` | Users’ home directories. | `/home/john`, `/home/ali` |
+| `/lib` | Shared libraries and kernel modules. | `libc.so`, kernel modules |
+| `/mnt` | Temporary mount points. | Mounted disks |
+| `/media` | Automatically mounted removable media. | `/media/usb-disk` |
+| `/opt` | Optional third‑party software. | Google Chrome, TeamViewer |
+| `/proc` | Virtual filesystem providing system information. | `/proc/cpuinfo`, `/proc/meminfo` |
+| `/root` | Home directory for the root user. | Root’s private files |
+| `/sbin` | Essential system administration commands. | `iptables`, `fdisk`, `reboot` |
+| `/tmp` | Temporary files. | Application caches |
+| `/usr` | Secondary hierarchy for user applications and data. | `/usr/bin/python`, `/usr/share` |
+| `/var` | Variable data that changes frequently. | `/var/log`, `/var/www` |
+
+---
+
+## Notes
+- Everything in Linux is treated as a file, including devices.
+- The FHS helps maintain consistency across distributions.
+- Understanding this structure is essential for system administration and troubleshooting.
