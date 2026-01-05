@@ -12,7 +12,7 @@ A structured guide for binary analysis, steganography, and network exploitation.
 | --- | --- | --- |
 | **Base64** | Decode strings | `base64 -d file.txt` |
 | **ROT13** | Rotate characters | `cat file | tr 'A-Za-z' 'N-ZA-Mn-za-m'` |
-| **Brainfuck** | Esoteric code | [Decode via dCode](https://www.dcode.fr/brainfuck-language) |
+| **Brainfuck** | Esoteric code | 
 
 > **Note:** For Base64, you can echo and decode in one line:
 > `echo "STRING==" | base64 -d`
