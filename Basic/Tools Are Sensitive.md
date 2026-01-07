@@ -1,3 +1,5 @@
+this directly into a file like tools.md.
+
 # Command-Line Utilities Cheat Sheet
 
 ## base64
@@ -9,7 +11,7 @@ cat file.txt
 base64 file.txt
 base64 -d file.txt
 
-## exif
+exif
 
 Show EXIF information in JPEG files.
 
@@ -21,13 +23,13 @@ Steghide is a steganography program that hides data within other files using lea
 
 Features:
 
-    Supports bmp, jpeg, wav, au
+Supports bmp, jpeg, wav, au
 
-    Blowfish encryption
+Blowfish encryption
 
-    MD5 hashing of passphrases
+MD5 hashing of passphrases
 
-    Pseudo-random distribution of hidden data
+Pseudo-random distribution of hidden data
 
 Useful in digital forensics investigations.
 
@@ -97,3 +99,7 @@ Compare files line by line.
 diff file1 file2
 
 
+If you want, I can also:
+- Split this into **multiple md files**
+- Turn it into a **CTF / forensics cheat sheet**
+- Add **examples + explanations** for each command
