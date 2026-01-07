@@ -1,29 +1,99 @@
-CLI Forensics & Data Cheat Sheet
-🛠️ Data Manipulation
-Command	Description	Example
-base64	Encode/Decode data to/from Base64.	base64 -d file.txt
-base58	Encode/Decode data to/from Base58.	base58 file.txt
-strings	Find printable characters in binary.	strings -e s file.txt
-tr	Translate/Replace characters (e.g., ROT13).	tr 'A-Za-z' 'N-ZA-Mn-za-m'
-xxd	Create or reverse a Hex Dump.	xxd file.bin
-uniq	Filter or find unique/repeated lines.	sort file | uniq -u
-🔍 Forensics & Hidden Data
-Command	Description	Example
-steghide	Extract data hidden in images/audio.	steghide extract -sf image.jpg
-exif	Show metadata in JPEG files.	exif image.jpg
-diff	Compare two files for differences.	diff file1 file2
-du	Estimate file space usage.	du -b -a | grep 1033
-📦 Compression & System
-Command	Description	Example
-gunzip	Decompress .gz files.	gunzip file.gz
-bunzip2	Decompress .bz2 files.	bunzip2 file.bz2
-mktemp	Create a temporary file or directory.	mktemp
-Useful One-Liners
+# Command-Line Utilities Cheat Sheet
 
-    ROT13 Decode: echo "your_text" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+## base64
+Encode/decode data and print to standard output.
 
-    Show unique lines only: cat data.txt | sort | uniq -u
+```bash
+echo VEhNe2p1NTdfZDNjMGQzXzdoM19iNDUzfQ== > file.txt
+cat file.txt
+base64 file.txt
+base64 -d file.txt
 
-    Extract Steghide without prompt: steghide extract -sf file.jpg -p "password"
+exif
 
-    Search for Base64-like strings in a binary: strings file.bin | grep "="
+Show EXIF information in JPEG files.
+
+exif Extinction_1577976250757.jpg
+
+steghide
+
+Steghide is a steganography program that hides data within other files using least significant bits.
+
+Features:
+
+    Supports bmp, jpeg, wav, au
+
+    Blowfish encryption
+
+    MD5 hashing of passphrases
+
+    Pseudo-random distribution of hidden data
+
+Useful in digital forensics investigations.
+
+steghide extract -sf Extinction_1577976250757.jpg
+
+du
+
+Estimate file space usage.
+
+du -b -a | grep 1033
+
+uniq
+
+Report or omit repeated lines.
+
+cat data.txt | sort | uniq -u
+
+strings
+
+Print strings of printable characters in files.
+
+cat data.txt | strings -e s | grep =
+
+tr
+
+Translate or delete characters.
+
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+xxd
+
+Make a hexdump or reverse a hexdump.
+
+xxd file.bin
+xxd -r file.hex
+
+mktemp
+
+Create a temporary file or directory.
+
+mktemp
+mktemp -d
+
+base58
+
+Encode/decode data and print to standard output.
+
+base58 encode file.txt
+base58 decode file.txt
+
+gunzip
+
+Decompress .gz files.
+
+gunzip file.gz
+
+bunzip2
+
+Decompress .bz2 files.
+
+bunzip2 file.bz2
+
+diff
+
+Compare files line by line.
+
+diff file1 file2
+
+
