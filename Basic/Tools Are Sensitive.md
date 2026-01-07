@@ -9,7 +9,7 @@ cat file.txt
 base64 file.txt
 base64 -d file.txt
 
-exif
+## exif
 
 Show EXIF information in JPEG files.
 
