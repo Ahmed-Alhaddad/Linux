@@ -1,4 +1,5 @@
-# Linux Filesystem Hierarchy Standard (FHS)
+# 📂 Linux Filesystem Hierarchy Standard (FHS)
+Understanding the single directory tree structure starting from `/`.
 
 Unlike Windows, which uses drive letters such as `C:\` and `D:\`, Linux uses a single directory tree that starts at the root directory `/`.  
 This layout is defined by the **Filesystem Hierarchy Standard (FHS)** to ensure consistency across Linux systems.

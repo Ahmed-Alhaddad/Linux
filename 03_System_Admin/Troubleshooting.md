@@ -1,3 +1,6 @@
+# 🔧 System Troubleshooting & Partition Fixes
+Solutions for NTFS mounting issues and system log analysis.
+
 these to "fix partition issue on linux
 
 sudo ntfsfix /dev/sda3

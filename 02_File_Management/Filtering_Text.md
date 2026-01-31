@@ -1,6 +1,5 @@
-
-
-# Linux Filters and Text Processing
+# 🧪 Linux Filters and Text Processing
+Mastering the pipeline (`|`) and tools like `grep`, `awk`, and `sed`.
 
 ## Filters
 
