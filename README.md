@@ -11,7 +11,7 @@ A collection of guides and scripts for managing Linux environments, from directo
 ## 🛠️ Data & Automation
 * **[Find & Search](./02_File_Management/Find_Command.md)** - Using `find`, `locate`, and `which`.
 * **[Text Filters](./02_File_Management/Filtering_Text.md)** - Mastering `grep`, `awk`, and `sed`.
-* **[Automation Scripts](./02_File_Management/Scripts/)** - Bash scripts for file operations.
+* **[Automation Scripts](./02_File_Management/Scripts/Copy_To_Folder.sh)** - Bash scripts for file operations.
 
 ## ⚙️ System Services
 * **[Services](./03_System_Admin/Service_Management.md)** - Managing systemd and init.d services.
