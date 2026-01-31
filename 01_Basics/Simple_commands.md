@@ -1,4 +1,3 @@
-
 # Linux Basics — Clear Command Guide
 
 ---
