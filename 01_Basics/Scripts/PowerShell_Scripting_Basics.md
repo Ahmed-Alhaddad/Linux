@@ -78,11 +78,6 @@ $dayOfWeek = Get-Date -Format dddd
 switch ($dayOfWeek) {
     "Monday"    { Write-Host "Today is Monday. Time to start the week!" }
     "Tuesday"   { Write-Host "Tuesday! Still a long way to go!" }
-    "Wednesday" { Write-Host "It's Wednesday. Halfway through!" }
-    "Thursday"  { Write-Host "Thursday! Almost there!" }
-    "Friday"    { Write-Host "Friday! Time to celebrate the weekend!" }
-    "Saturday"  { Write-Host "Saturday! Enjoy the weekend!" }
-    "Sunday"    { Write-Host "Sunday! Last day before Monday!" }
     Default     { Write-Host "Invalid day of the week." }
 }
 ```
