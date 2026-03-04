@@ -75,7 +75,11 @@ sudo ntfsfix /dev/sda2
   Attempts to repair filesystem errors on the specified NTFS partition.
 
 ---
+###Interface-Specific:
 
+To restart the network service in Linux, use
+sudo systemctl restart NetworkManager (modern systems) or sudo systemctl restart networking (Debian/Ubuntu). For older systems, try sudo service network-manager restart or sudo /etc/init.d/networking restart. Specific interfaces can be restarted with nmcli
+sudo ifdown eth0 && sudo ifup eth0
 ## Notes
 
 * `ntfsfix` is not a replacement for Windows `chkdsk`, but it can resolve many common NTFS issues.
