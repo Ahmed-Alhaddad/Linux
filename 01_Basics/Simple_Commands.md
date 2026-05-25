@@ -170,3 +170,14 @@ wget URL                    # Download file
 ```
 
 ---
+
+---
+
+## 15. To look up a domain or IP
+
+```bash
+Domain lookup: whois example.com
+IP lookup: whois 8.8.8.8 
+```
+
+---
