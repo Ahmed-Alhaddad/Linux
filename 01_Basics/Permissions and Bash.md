@@ -1,113 +1,399 @@
-Bash
-------
-Linux File Permissions
-Ownership of linux files
+# Bash Scripting & Linux File Permissions
 
-User(owner)	Group	Other(all)
+## Linux File Permissions
 
-Permissions
+### Ownership of Linux Files
 
-Read	Write	Execute
- r		  w       x
- 
- - = no permission
- - = file & d = directory
- 
-		user	group	all
- EX\ -/d rwx	r-x		r--
- 
- ----------------------------------------
- chmod command
- chmod permissions filename
- 
- There are two ways to use the command:
- 1-Absolute
-	using numbers (Octal number)
-	No.		Symbolic
-	---		--------
-	0		---
-	1		--x
-	2		-w-
-	3		-wx
-	4		r--
-	5		r-x
-	6		rw-
-	7		rwx
-ex\ chmod 764 file.txt
+Every file and directory in Linux has three ownership categories:
 
- 2-Symbolic
-	+	add permission
-	-	remove permission
- u= user
- g= group
- o= other
- a= all
- 
- ex\ chmod o=rwx file.txt
- ex\ chmod g+x file,txt
- 
- -----------------------------
- Programming using Bash
- 
- File end with .sh
- like file.sh
- to run file and you should have the permissios to Executable File:
- ex\ bash file.sh
- ex\ ./file.sh
- 
-- #!/bin/bash
-The line #!/bin/bash is called a shebang (or hashbang),and it tells the operating system to execute the script using the GNU Bash shell. It must be placed on the absolute first line of your file to work properly
- 
-Anatomy of the Line
-- #!: The marker that tells the Unix-like operating system to look at the next path for an interpreter
-- ./bin/bash: The absolute path to the Bash shell executable on your system.
+| User (Owner)      | Group                       | Other (Everyone Else) |
+| ----------------- | --------------------------- | --------------------- |
+| Owner of the file | Users in the assigned group | All other users       |
 
-EX\
-bash#!/bin/bash
+### Permission Types
+
+| Permission | Symbol | Description                  |
+| ---------- | ------ | ---------------------------- |
+| Read       | `r`    | View file contents           |
+| Write      | `w`    | Modify file contents         |
+| Execute    | `x`    | Run file as a program/script |
+
+### File Types
+
+| Symbol | Type         |
+| ------ | ------------ |
+| `-`    | Regular file |
+| `d`    | Directory    |
+
+### Example Permission Set
+
+```text
+-rwxr-xr--
+```
+
+Breakdown:
+
+| User  | Group | Others |
+| ----- | ----- | ------ |
+| `rwx` | `r-x` | `r--`  |
+
+Meaning:
+
+* User: Read, Write, Execute
+* Group: Read, Execute
+* Others: Read only
+
+---
+
+# chmod Command
+
+Used to change file permissions.
+
+## Syntax
+
+```bash
+chmod permissions filename
+```
+
+There are two methods:
+
+---
+
+## 1. Absolute Mode (Octal Numbers)
+
+| Number | Permission |
+| ------ | ---------- |
+| 0      | `---`      |
+| 1      | `--x`      |
+| 2      | `-w-`      |
+| 3      | `-wx`      |
+| 4      | `r--`      |
+| 5      | `r-x`      |
+| 6      | `rw-`      |
+| 7      | `rwx`      |
+
+### Example
+
+```bash
+chmod 764 file.txt
+```
+
+Meaning:
+
+| User    | Group   | Others  |
+| ------- | ------- | ------- |
+| 7 = rwx | 6 = rw- | 4 = r-- |
+
+---
+
+## 2. Symbolic Mode
+
+### Operators
+
+| Symbol | Meaning                 |
+| ------ | ----------------------- |
+| `+`    | Add permission          |
+| `-`    | Remove permission       |
+| `=`    | Assign exact permission |
+
+### Targets
+
+| Symbol | Meaning |
+| ------ | ------- |
+| `u`    | User    |
+| `g`    | Group   |
+| `o`    | Others  |
+| `a`    | All     |
+
+### Examples
+
+Give others full permissions:
+
+```bash
+chmod o=rwx file.txt
+```
+
+Add execute permission to group:
+
+```bash
+chmod g+x file.txt
+```
+
+Remove write permission from others:
+
+```bash
+chmod o-w file.txt
+```
+
+---
+
+# Programming Using Bash
+
+Bash scripts usually end with:
+
+```text
+.sh
+```
+
+Example:
+
+```text
+file.sh
+```
+
+### Running a Script
+
+Using Bash:
+
+```bash
+bash file.sh
+```
+
+Direct execution (requires execute permission):
+
+```bash
+./file.sh
+```
+
+---
+
+# Shebang (`#!/bin/bash`)
+
+The line below is called a **Shebang** (or **Hashbang**):
+
+```bash
+#!/bin/bash
+```
+
+It tells Linux to execute the script using the GNU Bash shell.
+
+**Important:** It must be the first line in the script.
+
+## Anatomy
+
+### `#!`
+
+Tells the operating system to use an interpreter.
+
+### `/bin/bash`
+
+Absolute path to the Bash executable.
+
+---
+
+## Example 1
+
+```bash
+#!/bin/bash
+
 echo "Hello, World!"
- 
-EX\
-bash#!/bin/bash
+```
+
+Output:
+
+```text
+Hello, World!
+```
+
+---
+
+## Example 2
+
+```bash
+#!/bin/bash
+
 touch file.txt
+
 echo "1" > file.txt
 echo "2" >> file.txt
 echo "3" >> file.txt
+```
 
-Variables
----------
-EX\ 
+### Operators
+
+| Operator | Description           |
+| -------- | --------------------- |
+| `>`      | Create/overwrite file |
+| `>>`     | Append to file        |
+
+Result:
+
+```text
+1
+2
+3
+```
+
+---
+
+# Variables
+
+Variables store data.
+
+## Example
+
+```bash
 x=1
 y="Hi"
+
 echo $x
 echo $y
+```
 
-Read
--------
-echo "Please enter your name"
+Output:
+
+```text
+1
+Hi
+```
+
+---
+
+# User Input (`read`)
+
+Used to receive input from the user.
+
+## Example
+
+```bash
+echo "Please enter your name:"
 read name
-echo "Welcome" $name
----------------------------
 
-Arithmetic Operators
----------------------
-expr using to Execute Arithmetic Operators.
-Integers numbers
-EX\
+echo "Welcome $name"
+```
 
+Example Output:
+
+```text
+Please enter your name:
+Ahmed
+Welcome Ahmed
+```
+
+---
+
+# Arithmetic Operators
+
+For integer calculations, use `expr`.
+
+## Integer Example
+
+```bash
 x=5
 y=10
+
 echo `expr $x + $y`
 echo `expr $x - $y`
 echo `expr $x \* $y`
 echo `expr $x / $y`
+```
 
-with the decimals we using bc but first you should be sure it's installed
-apt get install bc
-EX\
+Output:
 
+```text
+15
+-5
+50
+0
+```
+
+---
+
+# Decimal Calculations Using `bc`
+
+`expr` only supports integers.
+
+For floating-point calculations, install and use `bc`.
+
+## Install bc
+
+Ubuntu/Debian:
+
+```bash
+sudo apt install bc
+```
+
+---
+
+## Example
+
+```bash
 x=5.2
 y=10.4
-echo `expr $x + $y | bc`
-echo `expr $x - $y | bc`
-echo `expr $x \* $y | bc`
-echo `expr $x / $y | bc`
+
+echo "$x + $y" | bc
+echo "$x - $y" | bc
+echo "$x * $y" | bc
+echo "scale=2; $x / $y" | bc
+```
+
+Output:
+
+```text
+15.6
+-5.2
+54.08
+0.50
+```
+
+---
+
+# Quick Bash Cheat Sheet
+
+## File Permissions
+
+```bash
+chmod 755 script.sh
+chmod u+x script.sh
+chmod g-w file.txt
+```
+
+## Run Scripts
+
+```bash
+bash script.sh
+./script.sh
+```
+
+## Variables
+
+```bash
+name="Ahmed"
+echo $name
+```
+
+## Read Input
+
+```bash
+read name
+```
+
+## Integer Math
+
+```bash
+expr 5 + 10
+```
+
+## Decimal Math
+
+```bash
+echo "5.2 + 10.4" | bc
+```
+
+## Create File
+
+```bash
+touch file.txt
+```
+
+## Write to File
+
+```bash
+echo "Hello" > file.txt
+```
+
+## Append to File
+
+```bash
+echo "World" >> file.txt
+```
